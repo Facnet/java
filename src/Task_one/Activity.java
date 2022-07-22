@@ -12,14 +12,4 @@ public class Activity {
     public void setStringArrayList(String sString) {
         this.stringArrayList.add(sString);
     }
-
-    /*@Override
-    public String toString() {
-        if(!stringArrayList.isEmpty()){
-            for (String string: stringArrayList) {
-                return string;
-            }
-        }
-        return null;
-    }*/
 }
