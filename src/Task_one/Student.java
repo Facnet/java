@@ -6,19 +6,47 @@ public class Student {
     private Subject oSubject = new Subject();
     private Activity oActivity = new Activity();
 
-    public Student(byte iClass, String sSurname, String sName, String sSex) {
+    public Student(byte iClass, String sSurname, String sName, String sSex) throws Exception {
+        checkClass(iClass);
         this.bClass = iClass;
         this.sSurname = sSurname;
         this.sName = sName;
         this.sSex = sSex;
     }
 
+    public Student(byte iClass, String sSurname, String sName, String sSex, Subject subject) throws Exception {
+        checkClass(iClass);
+        this.bClass = iClass;
+        this.sSurname = sSurname;
+        this.sName = sName;
+        this.sSex = sSex;
+        this.oSubject = subject;
+    }
+
+    public Student(byte iClass, String sSurname, String sName, String sSex, Subject subject, Activity activity) throws Exception {
+        checkClass(iClass);
+        this.bClass = iClass;
+        this.sSurname = sSurname;
+        this.sName = sName;
+        this.sSex = sSex;
+        this.oSubject = subject;
+        this.oActivity = activity;
+    }
+
     public byte getbClass() {
         return bClass;
     }
 
-    public void setbClass(byte bClass) {
+    public void setbClass(byte bClass) throws Exception {
+        checkClass(bClass);
         this.bClass = bClass;
+    }
+
+    private void checkClass(byte bClass) throws Exception {
+        if (bClass < 1)
+            throw new Exception("Класс не может быть отрицательным! Инфо: " + bClass);
+        if (bClass > 11)
+            throw new Exception("Класс не может быть больше одиннадцати! Инфо: " + bClass);
     }
 
     public String getsSurname() {

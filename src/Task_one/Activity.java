@@ -6,7 +6,8 @@ public class Activity {
     private ArrayList<String> stringArrayList = new ArrayList<>();
 
     public ArrayList<String> getStringArrayList() {
-        return this.stringArrayList;
+        if (stringArrayList.isEmpty()) return null;
+        else return this.stringArrayList;
     }
 
     public void setStringArrayList(String sString) {
