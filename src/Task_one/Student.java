@@ -95,7 +95,7 @@ public class Student {
                 "Фамилия: " + this.sSurname + "\n" +
                 "Имя: " + this.sName + "\n" +
                 "Пол: " + this.sSex + "\n"
-                + oSubject.gethSubject() + "\n"
+                + oSubject.gethSubject() + " Средний балл: " + oSubject.getAvgball() + "\n"
                 + oActivity.getStringArrayList());
     }
 }
