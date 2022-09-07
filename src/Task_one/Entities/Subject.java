@@ -19,15 +19,15 @@ public class Subject {
     }
 
     public Subject(byte[] subject) throws Exception {
-        sethSubject("математика", subject[0]);
-        sethSubject("русский язык", subject[1]);
-        sethSubject("физика", subject[2]);
-        sethSubject("география", subject[3]);
-        sethSubject("химия", subject[4]);
-        sethSubject("физкультура", subject[5]);
+        setRatingSubject("математика", subject[0]);
+        setRatingSubject("русский язык", subject[1]);
+        setRatingSubject("физика", subject[2]);
+        setRatingSubject("география", subject[3]);
+        setRatingSubject("химия", subject[4]);
+        setRatingSubject("физкультура", subject[5]);
     }
 
-    public void sethSubject(String skey, Byte svalue) throws Exception {
+    public void setRatingSubject(String skey, Byte svalue) throws Exception {
         if (svalue < 1)
             throw new Exception("Оценка не может быть отрицательная! Инфо: " + skey + " " + svalue);
         if (svalue > 5)
@@ -36,4 +36,5 @@ public class Subject {
             throw new Exception("Такого предмета нет! Инфо: " + skey + " " + svalue);
         this.subjectHashMap.put(skey, svalue);
     }
+
 }

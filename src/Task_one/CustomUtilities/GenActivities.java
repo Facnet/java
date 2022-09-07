@@ -13,7 +13,7 @@ public class GenActivities {
         };
         Activity activity = new Activity();
         byte count;
-        if (genRandom(0, 10) > 5) {
+        if (genRandom(0, 10) > 6) {
             count = 2;
         } else {
             count = 3;

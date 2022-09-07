@@ -9,17 +9,17 @@ import static Task_one.CustomUtilities.MathRandom.genRandom;
 public class GenStudents {
     public static Student genStudent() {
         try {
-            byte bSex;
+            byte sexStudent;
             if (genRandom(0, 10) > 5) {
-                bSex = 1;
+                sexStudent = 1;
             } else {
-                bSex = 0;
+                sexStudent = 0;
             }
-            return new Student((byte) (
-                    genRandom(1, 11)),
+            return new Student(
+                    (byte) (genRandom(1, 11)),
                     "RandomSubject",
                     "WithActivity",
-                    bSex,
+                    sexStudent,
                     genSubject(),
                     genActivity()
             );
