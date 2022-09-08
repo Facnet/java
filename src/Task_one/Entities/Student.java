@@ -1,7 +1,8 @@
 package Task_one.Entities;
 
+import Task_one.CustomExceptions.EntitiesFieldNegativeException;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static Task_one.CustomUtilities.AvgBall.getAvgBall;
 
@@ -28,7 +29,7 @@ public class Student {
 
     public void setClassStudent(byte classStudent) throws Exception {
         if (classStudent < 1) {
-            throw new Exception("Класс не может быть отрицательным! Инфо: " + classStudent);
+            throw new EntitiesFieldNegativeException("Класс", this.surnameStudent, classStudent);
         }
         if (classStudent > 11) {
             throw new Exception("Класс не может быть больше одиннадцати! Инфо: " + classStudent);
@@ -69,7 +70,7 @@ public class Student {
 
     public void setSexStudent(byte sexStudent) throws Exception {
         if (sexStudent < 0)
-            throw new Exception("Пол не может быть отрицательным! Инфо: " + sexStudent);
+            throw new EntitiesFieldNegativeException("Пол", this.surnameStudent, sexStudent);
         if (sexStudent > 1)
             throw new Exception("Пол не может быть больше одного! Инфо: " + sexStudent);
         this.sexStudent = sexStudent;

@@ -1,9 +1,12 @@
 package Task_one.Entities;
 
+import Task_one.CustomExceptions.EntitiesFieldNegativeException;
+
 import java.util.HashMap;
 
 public class Subject {
     private HashMap<String, Byte> subjectHashMap;
+
     {
         subjectHashMap = new HashMap<>();
         subjectHashMap.put("математика", (byte) 0);
@@ -27,14 +30,14 @@ public class Subject {
         setRatingSubject("физкультура", subject[5]);
     }
 
-    public void setRatingSubject(String skey, Byte svalue) throws Exception {
-        if (svalue < 1)
-            throw new Exception("Оценка не может быть отрицательная! Инфо: " + skey + " " + svalue);
-        if (svalue > 5)
-            throw new Exception("Оценка не может быть больше пяти! Инфо: " + skey + " " + svalue);
-        if (!this.subjectHashMap.containsKey(skey))
-            throw new Exception("Такого предмета нет! Инфо: " + skey + " " + svalue);
-        this.subjectHashMap.put(skey, svalue);
+    public void setRatingSubject(String keySubject, Byte valueSubject) throws Exception {
+        if (valueSubject < 1)
+            throw new EntitiesFieldNegativeException("Оценка", keySubject, valueSubject);
+        if (valueSubject > 5)
+            throw new Exception("Оценка не может быть больше пяти! Инфо: " + keySubject + " " + valueSubject);
+        if (!this.subjectHashMap.containsKey(keySubject))
+            throw new Exception("Такого предмета нет! Инфо: " + keySubject + " " + valueSubject);
+        this.subjectHashMap.put(keySubject, valueSubject);
     }
 
 }
