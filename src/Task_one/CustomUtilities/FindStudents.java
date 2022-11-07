@@ -28,13 +28,12 @@ public class FindStudents {
                 studentsArrayList.add(student);
             }
         }
-        Student[] studentsArray = studentsArrayList.toArray(Student[]::new);
-        return fromSubjectAndRating(studentsArray, subject, rating);
+        return fromSubjectAndRating(studentsArrayList.toArray(Student[]::new), subject, rating);
     }
 
     public static ArrayList<Student> fromSubjectAndRating(Student[] students, String subject, byte rating) {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
-        byte ratingstudent = 0;
+        byte ratingstudent;// = 0;
         for (Student student : students) {
             ratingstudent = student.getSubjectStudent().getSubjectHashMap().get(subject);
             if (rating > 0) {
@@ -57,8 +56,7 @@ public class FindStudents {
                 studentsArrayList.add(student);
             }
         }
-        Student[] studentsArray = studentsArrayList.toArray(Student[]::new);
-        return fromRating(studentsArray, rating);
+        return fromRating(studentsArrayList.toArray(Student[]::new), rating);
     }
 
     public static ArrayList<Student> fromRating(Student[] students, byte rating) {
