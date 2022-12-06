@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PrintStudents {
     public static void printStidents(ArrayList<Student> students){
         if (students.isEmpty()) {
-            System.out.println("Ударников по данным условиям нет.");
+            System.out.println("Учеников по данным условиям нет.");
         }
         else {
             for (Student student : students) {
