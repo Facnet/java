@@ -1,7 +1,6 @@
 package Task_one.CustomUtilities;
 
 import Task_one.Entities.Student;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -69,11 +68,30 @@ public class FindStudents {
                     studentsArrayList.add(student);
                 }
             } else {
-                if (!ballColletion.contains((byte)Math.abs(rating))) {
+                if (!ballColletion.contains((byte) Math.abs(rating))) {
                     studentsArrayList.add(student);
                 }
             }
         }
         return studentsArrayList;
+    }
+
+    public static ArrayList<Student> fromClass(Student[] students, byte classStudent) throws Exception {
+        if (classStudent < 1) {
+            throw new Exception("Класс не может быть меньше одного! Инфо: " + classStudent);
+        }
+        if (classStudent > 11) {
+            throw new Exception("Класс не может быть больше одиннадцати! Инфо: " + classStudent);
+        }
+        ArrayList<Student> studentArrayList = new ArrayList<>();
+        for (Student student : students) {
+            if (student.getClassStudent() == classStudent) {
+                studentArrayList.add(student);
+            }
+        }
+        if (studentArrayList.isEmpty()) {
+            throw new Exception("Учеников из данной группы нет! Инфо: " + classStudent);
+        }
+        return studentArrayList;
     }
 }
