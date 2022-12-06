@@ -38,7 +38,7 @@ public class Student {
     }
 
     public void setGroup(byte group) throws Exception {
-        checkFieldEntities("Класс",group);
+        checkFieldEntities("Класс", group);
         this.group = group;
     }
 
@@ -47,7 +47,7 @@ public class Student {
     }
 
     public void setSurname(String surname) throws Exception {
-        checkFieldEntities("Фамилия",surname);
+        checkFieldEntities("Фамилия", surname);
         this.surname = surname;
     }
 
@@ -56,7 +56,7 @@ public class Student {
     }
 
     public void setName(String name) throws Exception {
-        checkFieldEntities("Имя",name);
+        checkFieldEntities("Имя", name);
         this.name = name;
     }
 
@@ -73,7 +73,7 @@ public class Student {
     }
 
     public void setSubject(byte[] subject) throws Exception {
-        checkFieldEntities("Оценка",subject);
+        checkFieldEntities("Оценка", subject);
         this.subject.put("математика", subject[0]);
         this.subject.put("русский язык", subject[1]);
         this.subject.put("физика", subject[2]);

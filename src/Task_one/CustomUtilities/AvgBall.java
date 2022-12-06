@@ -16,7 +16,7 @@ public class AvgBall {
         return (int) Math.round(avgball / ballColletion.size());
     }
 
-    public static ArrayList<Student> getMaxAvgBall(Student[] students){
+    public static ArrayList<Student> getMaxAvgBall(Student[] students) {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
         int maxavgball = 0;
         int avgball;

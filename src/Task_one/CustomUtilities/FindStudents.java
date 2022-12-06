@@ -3,7 +3,6 @@ package Task_one.CustomUtilities;
 import Task_one.Entities.Student;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import static Task_one.CustomUtilities.CheckFieldEntities.checkFieldEntities;
@@ -118,7 +117,7 @@ public class FindStudents {
         ArrayList<Student> studentArrayList = new ArrayList<>();
         boolean excellencies = false;
         for (Student student : students) {
-            if(!student.getActivity().isEmpty()) {
+            if (!student.getActivity().isEmpty()) {
                 HashMap<String, Byte> map = student.getSubject();
                 for (String key : map.keySet()) {
                     if (map.get(key) == 5 || map.get(key) == 4) {
