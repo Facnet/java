@@ -2,30 +2,35 @@ package Task_one.CustomUtilities;
 
 import Task_one.Entities.Student;
 
+import java.util.ArrayList;
+
 import static Task_one.CustomUtilities.GenActivities.genActivity;
 import static Task_one.CustomUtilities.GenSubjects.genSubject;
 import static Task_one.CustomUtilities.MathRandom.genRandom;
 
 public class GenStudents {
-    public static Student genStudent() {
-        try {
-            byte sexStudent;
+    public static Student[] genStudent(int count) throws Exception {
+        Student[] students = new Student[count];
+        for (int i = 0; i < count - 1; i++) {
+            String gender;
             if (genRandom(0, 10) > 5) {
-                sexStudent = 1;
+                gender = "М";
             } else {
-                sexStudent = 0;
+                gender = "Ж";
             }
-            return new Student(
+            students[i] = new Student(
                     (byte) (genRandom(1, 11)),
                     "RandomSubject",
                     "WithActivity",
-                    sexStudent,
+                    gender,
                     genSubject(),
                     genActivity()
             );
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
-        return null;
+        ArrayList<String> activity = new ArrayList<>();
+        activity.add("Java");
+        students[count - 1] = new Student((byte) 8, "Perfect", "Idol", "Ж", new byte[]{5, 5, 5, 5, 5, 5}, activity);
+
+        return students;
     }
 }

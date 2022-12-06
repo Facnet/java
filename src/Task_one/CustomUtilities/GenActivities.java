@@ -1,26 +1,27 @@
 package Task_one.CustomUtilities;
 
-import Task_one.Entities.Activity;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static Task_one.CustomUtilities.MathRandom.genRandom;
 
 public class GenActivities {
-    public static Activity genActivity() {
+
+    public static ArrayList<String> genActivity() {
         String[] activityArray = {
                 "субботник",
                 "олимпиада по математике",
                 "благотворительный марафон на 10м"
         };
-        Activity activity = new Activity();
         byte count;
-        if (genRandom(0, 10) > 6) {
-            count = 2;
-        } else {
+        byte random = (byte) genRandom(0,10);
+        if (random > 7){
             count = 3;
+        } else if(random > 4){
+            count = 1;
+        } else {
+            count = 0;
         }
-        for (int i = 0; i < count; i++) {
-            activity.addActivityArrayList(activityArray[i]);
-        }
-        return activity;
+        return new ArrayList<>(Arrays.asList(activityArray).subList(0, count));
     }
 }
