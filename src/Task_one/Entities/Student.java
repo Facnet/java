@@ -1,12 +1,16 @@
 package Task_one.Entities;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static Task_one.CustomUtilities.AvgBall.getAvgBall;
 import static Task_one.CustomUtilities.CheckFieldEntities.*;
 
-public class Student {
+public class Student implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -8306194194883677241L;
     private byte group;
     private String surname;
     private String name;
