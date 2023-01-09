@@ -4,7 +4,7 @@ import Task_one.CustomExceptions.EntitiesFieldEmptyException;
 import Task_one.CustomExceptions.EntitiesFieldOutOfBoundsException;
 
 public class CheckFieldEntities {
-    public static void checkFieldEntities(String field, String value) throws Exception {
+    public static void checkFieldEntities(String field, String value) throws EntitiesFieldEmptyException {
         switch (field) {
             case "Фамилия":
                 if (value.equals("")) {
@@ -19,7 +19,7 @@ public class CheckFieldEntities {
         }
     }
 
-    public static void checkFieldEntities(String field, byte value) throws Exception {
+    public static void checkFieldEntities(String field, byte value) throws EntitiesFieldOutOfBoundsException {
         if (field.equals("Класс")) {
             if (value < 1) {
                 throw new EntitiesFieldOutOfBoundsException("Класс не может быть меньше одного! Инфо: " + value);
@@ -30,7 +30,7 @@ public class CheckFieldEntities {
         }
     }
 
-    public static void checkFieldEntities(String field, byte[] value) throws Exception {
+    public static void checkFieldEntities(String field, byte[] value) throws EntitiesFieldOutOfBoundsException {
         if (field.equals("Оценка")) {
             for (byte subject : value) {
                 if (subject < 1) {

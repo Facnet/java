@@ -6,7 +6,7 @@ import Task_one.Entities.Student;
 import java.util.ArrayList;
 
 public class PrintStudents {
-    public static void printStidents(ArrayList<Student> students) throws Exception {
+    public static void printStidents(ArrayList<Student> students) throws EntitiesEmptyException {
         if (students.isEmpty()) {
             throw new EntitiesEmptyException("Учеников по данным условиям нет.");
         } else {

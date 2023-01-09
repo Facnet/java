@@ -1,5 +1,6 @@
 package Task_one.CustomUtilities;
 
+import Task_one.CustomExceptions.EntitiesFieldOutOfBoundsException;
 import Task_one.Entities.Student;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class FindStudents {
         return studentsArrayList;
     }
 
-    public static ArrayList<Student> fromGroup(Student[] students, byte group) throws Exception {
+    public static ArrayList<Student> fromGroup(Student[] students, byte group) throws EntitiesFieldOutOfBoundsException {
         checkFieldEntities("Класс", group);
         ArrayList<Student> studentArrayList = new ArrayList<>();
         for (Student student : students) {

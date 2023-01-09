@@ -1,5 +1,8 @@
 package Task_one.Entities;
 
+import Task_one.CustomExceptions.EntitiesFieldEmptyException;
+import Task_one.CustomExceptions.EntitiesFieldOutOfBoundsException;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class Student implements Serializable {
         subject.put(Subject.PHYSICALCULTURE.getTranslate(), (byte) 0);
     }
 
-    public Student(byte grade, String surname, String name, String gender, byte[] subject, ArrayList<String> activity) throws Exception {
+    public Student(byte grade, String surname, String name, String gender, byte[] subject, ArrayList<String> activity) throws EntitiesFieldOutOfBoundsException, EntitiesFieldEmptyException {
         setGroup(grade);
         setSurname(surname);
         setName(name);
@@ -41,7 +44,7 @@ public class Student implements Serializable {
         return this.group;
     }
 
-    public void setGroup(byte group) throws Exception {
+    public void setGroup(byte group) throws EntitiesFieldOutOfBoundsException {
         checkFieldEntities("Класс", group);
         this.group = group;
     }
@@ -50,7 +53,7 @@ public class Student implements Serializable {
         return this.surname;
     }
 
-    public void setSurname(String surname) throws Exception {
+    public void setSurname(String surname) throws EntitiesFieldEmptyException {
         checkFieldEntities("Фамилия", surname);
         this.surname = surname;
     }
@@ -59,7 +62,7 @@ public class Student implements Serializable {
         return this.name;
     }
 
-    public void setName(String name) throws Exception {
+    public void setName(String name) throws EntitiesFieldEmptyException {
         checkFieldEntities("Имя", name);
         this.name = name;
     }
@@ -76,7 +79,7 @@ public class Student implements Serializable {
         return this.subject;
     }
 
-    public void setSubject(byte[] subject) throws Exception {
+    public void setSubject(byte[] subject) throws EntitiesFieldOutOfBoundsException {
         checkFieldEntities("Оценка", subject);
         this.subject.put(Subject.MATHEMATICS.getTranslate(), subject[0]);
         this.subject.put(Subject.RUSSIANLANGUAGE.getTranslate(), subject[1]);

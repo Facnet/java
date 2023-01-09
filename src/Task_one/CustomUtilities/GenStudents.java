@@ -1,5 +1,7 @@
 package Task_one.CustomUtilities;
 
+import Task_one.CustomExceptions.EntitiesFieldEmptyException;
+import Task_one.CustomExceptions.EntitiesFieldOutOfBoundsException;
 import Task_one.Entities.Student;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.Arrays;
 import static Task_one.CustomUtilities.MathRandom.genRandom;
 
 public class GenStudents {
-    public static Student[] genStudent(int count) throws Exception {
+    public static Student[] genStudent(int count) throws EntitiesFieldEmptyException, EntitiesFieldOutOfBoundsException {
         Student[] students = new Student[count];
         for (int i = 0; i < count; i++) {
             String gender;

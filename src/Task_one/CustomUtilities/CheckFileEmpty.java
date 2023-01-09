@@ -4,10 +4,12 @@ import Task_one.CustomExceptions.FileEmptyException;
 import Task_one.CustomExceptions.FileNameEmptyException;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class CheckFileEmpty {
-    public static void checkNameAndFileEmpty(String filename) throws Exception {
+    public static void checkNameAndFileEmpty(String filename) throws FileNameEmptyException, FileEmptyException, IOException {
         if (filename.isEmpty()) {
             throw new FileNameEmptyException("Имя файла не может быть пустым!");
         } else {
@@ -15,8 +17,10 @@ public class CheckFileEmpty {
                 if (bufferedReader.readLine() == null) {
                     throw new FileEmptyException("Указанный файл пуст!");
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (FileNotFoundException e){
+                throw new FileNotFoundException("Указанный файл не существует!");
+            } catch (IOException e) {
+                throw new IOException("Ошибка чтения!");
             }
         }
     }
