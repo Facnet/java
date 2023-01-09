@@ -16,12 +16,12 @@ public class Student {
 
     {
         subject = new HashMap<>();
-        subject.put("математика", (byte) 0);
-        subject.put("русский язык", (byte) 0);
-        subject.put("физика", (byte) 0);
-        subject.put("география", (byte) 0);
-        subject.put("химия", (byte) 0);
-        subject.put("физкультура", (byte) 0);
+        subject.put(Subject.MATHEMATICS.getTranslate(), (byte) 0);
+        subject.put(Subject.RUSSIANLANGUAGE.getTranslate(), (byte) 0);
+        subject.put(Subject.PHYSICS.getTranslate(), (byte) 0);
+        subject.put(Subject.GEOGRAPHY.getTranslate(), (byte) 0);
+        subject.put(Subject.CHEMISTRY.getTranslate(), (byte) 0);
+        subject.put(Subject.PHYSICALCULTURE.getTranslate(), (byte) 0);
     }
 
     public Student(byte grade, String surname, String name, String gender, byte[] subject, ArrayList<String> activity) throws Exception {
@@ -74,12 +74,12 @@ public class Student {
 
     public void setSubject(byte[] subject) throws Exception {
         checkFieldEntities("Оценка", subject);
-        this.subject.put("математика", subject[0]);
-        this.subject.put("русский язык", subject[1]);
-        this.subject.put("физика", subject[2]);
-        this.subject.put("география", subject[3]);
-        this.subject.put("химия", subject[4]);
-        this.subject.put("физкультура", subject[5]);
+        this.subject.put(Subject.MATHEMATICS.getTranslate(), subject[0]);
+        this.subject.put(Subject.RUSSIANLANGUAGE.getTranslate(), subject[1]);
+        this.subject.put(Subject.PHYSICS.getTranslate(), subject[2]);
+        this.subject.put(Subject.GEOGRAPHY.getTranslate(), subject[3]);
+        this.subject.put(Subject.CHEMISTRY.getTranslate(), subject[4]);
+        this.subject.put(Subject.PHYSICALCULTURE.getTranslate(), subject[5]);
     }
 
     public ArrayList<String> getActivity() {

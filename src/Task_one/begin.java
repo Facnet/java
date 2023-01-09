@@ -3,6 +3,8 @@ package Task_one;
 import Task_one.CustomUtilities.AvgBall;
 import Task_one.CustomUtilities.FindStudents;
 import Task_one.Entities.Student;
+import Task_one.Entities.Subject;
+
 import java.util.Scanner;
 
 import static Task_one.CustomUtilities.GenStudents.genStudent;
@@ -20,7 +22,7 @@ public class begin {
             //ученики, у которых наивысший балл
             //printStidents(AvgBall.getMaxAvgBall(students));
             //девочки, у которых пятёрка по математике
-            //printStidents(FindStudents.findStudent(students,"Ж","математика", (byte) 5));
+            //printStidents(FindStudents.findStudent(students,"Ж", Subject.MATHEMATICS.getTranslate(), (byte) 5));
             //мальчики, у которых нет троек
             //printStidents(FindStudents.findStudent(students,"М","",(byte) -3));
             //все ученики из одной группы (группа вводится с клавиатуры)
