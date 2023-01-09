@@ -21,7 +21,7 @@ public class ReadFromFile {
         } catch (EntitiesEmptyException e) {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
-            throw new ClassNotFoundException("Класс с указанным именем не найден.");
+            throw new ClassNotFoundException("Не удается найти класс сериализованного объекта.");
         }
     }
 }
