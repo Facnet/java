@@ -86,8 +86,8 @@ public class Student {
         return this.activity;
     }
 
-    public void setActivity(ArrayList<String> activityArrayList) {
-        this.activity = activityArrayList;
+    public void setActivity(ArrayList<String> activity) {
+        this.activity = activity;
     }
 
     @Override

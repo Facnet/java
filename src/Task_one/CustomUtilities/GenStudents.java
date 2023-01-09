@@ -26,10 +26,10 @@ public class GenStudents {
                     genActivity()
             );
         }
+        //идеальный студент
         //ArrayList<String> activity = new ArrayList<>();
         //activity.add("Java");
         //students[count - 1] = new Student((byte) 8, "Perfect", "Idol", "Ж", new byte[]{5, 5, 5, 5, 5, 5}, activity);
-
         return students;
     }
 

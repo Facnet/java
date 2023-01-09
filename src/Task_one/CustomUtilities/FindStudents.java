@@ -100,7 +100,7 @@ public class FindStudents {
                         if (map.get(key) == 5) {
                             excellencies = true;
                         } else {
-                            excellencies = false;
+                            //excellencies = false;
                             break;
                         }
                     }
@@ -123,7 +123,7 @@ public class FindStudents {
                     if (map.get(key) == 5 || map.get(key) == 4) {
                         excellencies = true;
                     } else {
-                        excellencies = false;
+                        //excellencies = false;
                         break;
                     }
                 }
