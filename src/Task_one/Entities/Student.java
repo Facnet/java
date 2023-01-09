@@ -34,7 +34,7 @@ public class Student {
     }
 
     public byte getGroup() {
-        return group;
+        return this.group;
     }
 
     public void setGroup(byte group) throws Exception {
@@ -43,7 +43,7 @@ public class Student {
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname) throws Exception {
@@ -52,7 +52,7 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) throws Exception {
@@ -69,7 +69,7 @@ public class Student {
     }
 
     public HashMap<String, Byte> getSubject() {
-        return subject;
+        return this.subject;
     }
 
     public void setSubject(byte[] subject) throws Exception {
