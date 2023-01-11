@@ -30,17 +30,16 @@ public class begin {
             //мальчики, у которых нет троек
             //printStidents(FindStudents.findStudent(students, "М", "", (byte) -3));
             //все ученики из одной группы (группа вводится с клавиатуры)
-            printStidents(FindStudents.fromGroup(students, new Scanner(System.in).nextByte()));
+            //printStidents(FindStudents.fromGroup(students, new Scanner(System.in).nextByte()));
             //всех круглых отличников, которые учатся в классе, выше 7.
             //printStidents(FindStudents.fromExcellentBeforeGroup(students, (byte) 7));
             //всех ударников(только 4 и 5), которые участвуют в каких-то активностях.
             //printStidents(FindStudents.fromExcellentWithActivity(students));
 
             //Сохранить в файл данные
-            //saveStudentToFile(FindStudents.findStudent(students, "М", "", (byte) -3), "student.bin");
+            saveStudentToFile(FindStudents.findStudent(students, "М", "", (byte) -3), "student.bin");
             //Показать данные из файла
-            readStudentFromFile("student1.bin");
-
+            readStudentFromFile("student.bin");
 
         } catch (EntitiesEmptyException | EntitiesFieldEmptyException | EntitiesFieldOutOfBoundsException | FileNameEmptyException | IOException | FileEmptyException | ClassNotFoundException e) {
             System.out.println(e.getMessage());

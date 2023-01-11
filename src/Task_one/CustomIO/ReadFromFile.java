@@ -5,6 +5,7 @@ import Task_one.CustomExceptions.FileEmptyException;
 import Task_one.CustomExceptions.FileNameEmptyException;
 import Task_one.Entities.Student;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,6 +23,8 @@ public class ReadFromFile {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new ClassNotFoundException("Не удается найти класс сериализованного объекта.");
+        } catch (IOException e){
+            throw new IOException("Ошибка чтения файла");
         }
     }
 }
