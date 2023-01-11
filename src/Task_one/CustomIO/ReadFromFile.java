@@ -5,7 +5,6 @@ import Task_one.CustomExceptions.FileEmptyException;
 import Task_one.CustomExceptions.FileNameEmptyException;
 import Task_one.Entities.Student;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;

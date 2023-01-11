@@ -21,7 +21,7 @@ public class WriteToFile {
                 try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename))) {
                     objectOutputStream.writeObject(students);
                 }  catch (FileNotFoundException e){
-                    throw new FileNotFoundException("Указанный файл не существует");
+                    throw new FileNotFoundException("Указанный файл не существует или не может быть создан или не может быть открыт по какой-либо другой причине");
                 } catch (IOException e) {
                     throw new IOException("Ошибка записи");
                 }
