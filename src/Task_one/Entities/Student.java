@@ -123,6 +123,6 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31*Objects.hash(group, surname, name, gender, subject, activity);
+        return Objects.hash(group, surname, name, gender, subject, activity);
     }
 }
