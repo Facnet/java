@@ -19,7 +19,7 @@ public class begin {
     public static void main(String[] args) {
         try {
             //генерации учеников
-            Student[] students = genStudent(100);
+            Student[] students = genStudent(10);
 
             //все ученики
             //printStidents(FindStudents.findStudent(students, "", "", (byte) 0));
@@ -37,12 +37,13 @@ public class begin {
             //всех ударников(только 4 и 5), которые участвуют в каких-то активностях.
             //printStidents(FindStudents.fromExcellentWithActivity(students));
             //Сохранить в файл данные
-            saveStudentToFile(FindStudents.findStudent(students, "Ж", Subject.MATHEMATICS.getTranslate(), (byte) 5), "student.bin");
+            //saveStudentToFile(FindStudents.findStudent(students, "Ж", Subject.MATHEMATICS.getTranslate(), (byte) 5), "student.bin");
+            saveStudentToFile(FindStudents.fromExcellentWithActivity(students), "student.bin");
             //Показать данные из файла
             //printStidents(readStudentFromFile("student.bin"));
 
             //Количество совпадений учеников
-            equalStudent(readStudentFromFile("student.bin"),FindStudents.fromExcellentWithActivity(students));
+            equalStudent(readStudentFromFile("student.bin"),FindStudents.findStudent(students, "Ж", Subject.MATHEMATICS.getTranslate(), (byte) 5));
 
         } catch (EntitiesEmptyException | EntitiesFieldEmptyException | EntitiesFieldOutOfBoundsException | FileNameEmptyException | IOException | FileEmptyException | ClassNotFoundException e) {
             System.out.println(e.getMessage());

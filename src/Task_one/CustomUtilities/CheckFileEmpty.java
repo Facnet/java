@@ -18,9 +18,9 @@ public class CheckFileEmpty {
                     throw new FileEmptyException("Указанный файл пуст!");
                 }
             } catch (FileNotFoundException e){
-                throw new FileNotFoundException("Указанный файл не существует или не может быть открыт по какой-либо другой причине!");
+                throw new FileNotFoundException("Указанный файл не существует или не может быть открыт для чтения по какой-либо другой причине!");
             } catch (IOException e) {
-                throw new IOException("Ошибка чтения!");
+                throw new IOException("Упс. Ошибка чтения!");
             }
         }
     }

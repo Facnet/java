@@ -16,7 +16,7 @@ public class WriteToFile {
             throw new FileNameEmptyException("Имя файла не может быть пустым!");
         } else {
             if (students.isEmpty()) {
-                throw new EntitiesEmptyException("Учеников по данным условиям нет.");
+                throw new EntitiesEmptyException("Учеников по данным условиям для записи в файл нет.");
             } else {
                 try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename))) {
                     objectOutputStream.writeObject(students);
