@@ -9,6 +9,7 @@ import Task_one.Entities.Subject;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static Task_one.CustomUtilities.EqualStudent.equalStudent;
 import static Task_one.CustomUtilities.GenStudents.genStudent;
 import static Task_one.CustomUtilities.PrintStudents.printStidents;
 import static Task_one.CustomIO.WriteToFile.saveStudentToFile;
@@ -18,7 +19,7 @@ public class begin {
     public static void main(String[] args) {
         try {
             //генерации учеников
-            Student[] students = genStudent(10);
+            Student[] students = genStudent(100);
 
             //все ученики
             //printStidents(FindStudents.findStudent(students, "", "", (byte) 0));
@@ -35,11 +36,13 @@ public class begin {
             //printStidents(FindStudents.fromExcellentBeforeGroup(students, (byte) 7));
             //всех ударников(только 4 и 5), которые участвуют в каких-то активностях.
             //printStidents(FindStudents.fromExcellentWithActivity(students));
-
             //Сохранить в файл данные
-            saveStudentToFile(FindStudents.findStudent(students, "М", "", (byte) -3), "student.bin");
+            saveStudentToFile(FindStudents.findStudent(students, "Ж", Subject.MATHEMATICS.getTranslate(), (byte) 5), "student.bin");
             //Показать данные из файла
-            readStudentFromFile("student.bin");
+            //printStidents(readStudentFromFile("student.bin"));
+
+            //Количество совпадений учеников
+            equalStudent(readStudentFromFile("student.bin"),FindStudents.fromExcellentWithActivity(students));
 
         } catch (EntitiesEmptyException | EntitiesFieldEmptyException | EntitiesFieldOutOfBoundsException | FileNameEmptyException | IOException | FileEmptyException | ClassNotFoundException e) {
             System.out.println(e.getMessage());

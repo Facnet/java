@@ -7,6 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static Task_one.CustomUtilities.AvgBall.getAvgBall;
 import static Task_one.CustomUtilities.CheckFieldEntities.*;
@@ -105,5 +106,23 @@ public class Student implements Serializable {
                 "Пол: " + getGender() + "\n"
                 + getSubject() + " Средний балл: " + getAvgBall(this.subject) + "\n"
                 + getActivity());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return group == student.group
+                && surname.equals(student.surname)
+                && name.equals(student.name)
+                && gender.equals(student.gender)
+                && subject.equals(student.subject)
+                && Objects.equals(activity, student.activity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(group, surname, name, gender, subject, activity);
     }
 }
