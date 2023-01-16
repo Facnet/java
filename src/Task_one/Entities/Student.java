@@ -100,12 +100,14 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return ("Класс: " + getGroup() + "\n" +
+        /*return ("Класс: " + getGroup() + "\n" +
                 "Фамилия: " + getSurname() + "\n" +
                 "Имя: " + getName() + "\n" +
                 "Пол: " + getGender() + "\n"
                 + getSubject() + " Средний балл: " + getAvgBall(this.subject) + "\n"
-                + getActivity());
+                + getActivity());*/
+        return String.format("Класс: %s\n Фамилия: %s\n Имя: %s\n Пол: %s\n Оценки: %s Средний балл: %d\n Мероприятия: %s\n ",
+                getGroup(),getSurname(),getName(),getGender(),getSubject(),getAvgBall(this.subject),getActivity());
     }
 
     @Override

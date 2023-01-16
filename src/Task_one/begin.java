@@ -19,7 +19,7 @@ public class begin {
     public static void main(String[] args) {
         try {
             //генерации учеников
-            Student[] students = genStudent(10);
+            Student[] students = genStudent(100);
 
             //все ученики
             //printStidents(FindStudents.findStudent(students, "", "", (byte) 0));
