@@ -1,4 +1,4 @@
-package Task_one.CustomUtilities;
+package Task_one.Utilities;
 
 public class MathRandom {
     static int genRandom(int a, int b) {

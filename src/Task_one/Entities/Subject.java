@@ -2,11 +2,11 @@ package Task_one.Entities;
 
 public enum Subject {
     MATHEMATICS("Математика"),
-    RUSSIANLANGUAGE("Русский язык"),
+    RUSSIAN_LANGUAGE("Русский язык"),
     PHYSICS("Физика"),
     GEOGRAPHY("География"),
     CHEMISTRY("Химия"),
-    PHYSICALCULTURE("Физкультура");
+    PHYSICAL_CULTURE("Физкультура");
     private String translate;
 
     Subject(String translate) {
@@ -15,5 +15,10 @@ public enum Subject {
 
     public String getTranslate() {
         return this.translate;
+    }
+
+    @Override
+    public String toString() {
+        return translate;
     }
 }

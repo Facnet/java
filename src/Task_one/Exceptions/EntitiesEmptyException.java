@@ -1,4 +1,4 @@
-package Task_one.CustomExceptions;
+package Task_one.Exceptions;
 
 public class EntitiesEmptyException extends Exception {
 

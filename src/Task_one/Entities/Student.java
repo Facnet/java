@@ -1,7 +1,6 @@
 package Task_one.Entities;
 
-import Task_one.CustomExceptions.EntitiesFieldEmptyException;
-import Task_one.CustomExceptions.EntitiesFieldOutOfBoundsException;
+import Task_one.Exceptions.EntitiesEmptyException;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,35 +8,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static Task_one.CustomUtilities.AvgBall.getAvgBall;
-import static Task_one.CustomUtilities.CheckFieldEntities.*;
+import static Task_one.Utilities.CheckFieldEntities.*;
+import static Task_one.Utilities.StudentUtils.getAvgMark;
 
 public class Student implements Serializable {
     @Serial
-    private static final long serialVersionUID = -8306194194883677241L;
+    private static final long serialVersionUID = -6551838513398849980L;
     private byte group;
     private String surname;
     private String name;
     private String gender;
-    private HashMap<String, Byte> subject;
+    private HashMap<Subject, Byte> marks = new HashMap<>();
     private ArrayList<String> activity = new ArrayList<>();
 
-    {
-        subject = new HashMap<>();
-        subject.put(Subject.MATHEMATICS.getTranslate(), (byte) 0);
-        subject.put(Subject.RUSSIANLANGUAGE.getTranslate(), (byte) 0);
-        subject.put(Subject.PHYSICS.getTranslate(), (byte) 0);
-        subject.put(Subject.GEOGRAPHY.getTranslate(), (byte) 0);
-        subject.put(Subject.CHEMISTRY.getTranslate(), (byte) 0);
-        subject.put(Subject.PHYSICALCULTURE.getTranslate(), (byte) 0);
-    }
-
-    public Student(byte grade, String surname, String name, String gender, byte[] subject, ArrayList<String> activity) throws EntitiesFieldOutOfBoundsException, EntitiesFieldEmptyException {
+    public Student(byte grade, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws EntitiesEmptyException {
         setGroup(grade);
         setSurname(surname);
         setName(name);
         setGender(gender);
-        setSubject(subject);
+        setMarks(marks);
         setActivity(activity);
     }
 
@@ -45,8 +34,8 @@ public class Student implements Serializable {
         return this.group;
     }
 
-    public void setGroup(byte group) throws EntitiesFieldOutOfBoundsException {
-        checkFieldEntities("Класс", group);
+    public void setGroup(byte group) {
+        checkGroup(group);
         this.group = group;
     }
 
@@ -54,8 +43,8 @@ public class Student implements Serializable {
         return this.surname;
     }
 
-    public void setSurname(String surname) throws EntitiesFieldEmptyException {
-        checkFieldEntities("Фамилия", surname);
+    public void setSurname(String surname) throws EntitiesEmptyException {
+        checkField("Фамилия", surname);
         this.surname = surname;
     }
 
@@ -63,8 +52,8 @@ public class Student implements Serializable {
         return this.name;
     }
 
-    public void setName(String name) throws EntitiesFieldEmptyException {
-        checkFieldEntities("Имя", name);
+    public void setName(String name) throws EntitiesEmptyException {
+        checkField("Имя", name);
         this.name = name;
     }
 
@@ -76,18 +65,18 @@ public class Student implements Serializable {
         this.gender = gender;
     }
 
-    public HashMap<String, Byte> getSubject() {
-        return this.subject;
+    public HashMap<Subject, Byte> getMarks() {
+        return this.marks;
     }
 
-    public void setSubject(byte[] subject) throws EntitiesFieldOutOfBoundsException {
-        checkFieldEntities("Оценка", subject);
-        this.subject.put(Subject.MATHEMATICS.getTranslate(), subject[0]);
-        this.subject.put(Subject.RUSSIANLANGUAGE.getTranslate(), subject[1]);
-        this.subject.put(Subject.PHYSICS.getTranslate(), subject[2]);
-        this.subject.put(Subject.GEOGRAPHY.getTranslate(), subject[3]);
-        this.subject.put(Subject.CHEMISTRY.getTranslate(), subject[4]);
-        this.subject.put(Subject.PHYSICALCULTURE.getTranslate(), subject[5]);
+    public void setMarks(byte[] marks) {
+        checkMarks(marks);
+        this.marks.put(Subject.MATHEMATICS, marks[0]);
+        this.marks.put(Subject.RUSSIAN_LANGUAGE, marks[1]);
+        this.marks.put(Subject.PHYSICS, marks[2]);
+        this.marks.put(Subject.GEOGRAPHY, marks[3]);
+        this.marks.put(Subject.CHEMISTRY, marks[4]);
+        this.marks.put(Subject.PHYSICAL_CULTURE, marks[5]);
     }
 
     public ArrayList<String> getActivity() {
@@ -100,14 +89,12 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        /*return ("Класс: " + getGroup() + "\n" +
+        return ("Класс: " + getGroup() + "\n" +
                 "Фамилия: " + getSurname() + "\n" +
                 "Имя: " + getName() + "\n" +
                 "Пол: " + getGender() + "\n"
-                + getSubject() + " Средний балл: " + getAvgBall(this.subject) + "\n"
-                + getActivity());*/
-        return String.format("Класс: %s\n Фамилия: %s\n Имя: %s\n Пол: %s\n Оценки: %s Средний балл: %d\n Мероприятия: %s\n ",
-                getGroup(),getSurname(),getName(),getGender(),getSubject(),getAvgBall(this.subject),getActivity());
+                + getMarks() + " Средний балл: " + getAvgMark(this.marks) + "\n"
+                + getActivity());
     }
 
     @Override
@@ -119,12 +106,12 @@ public class Student implements Serializable {
                 && surname.equals(student.surname)
                 && name.equals(student.name)
                 && gender.equals(student.gender)
-                && subject.equals(student.subject)
+                && marks.equals(student.marks)
                 && Objects.equals(activity, student.activity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(group, surname, name, gender, subject, activity);
+        return Objects.hash(group, surname, name, gender, marks, activity);
     }
 }
