@@ -14,6 +14,7 @@ import static Task_one.Utilities.StudentUtils.getAvgMark;
 public class Student implements Serializable {
     @Serial
     private static final long serialVersionUID = -6551838513398849980L;
+    // группу переделать, чтобы можно было вместе с буквой, например 6А
     private byte group;
     private String surname;
     private String name;
@@ -21,8 +22,8 @@ public class Student implements Serializable {
     private HashMap<Subject, Byte> marks = new HashMap<>();
     private ArrayList<String> activity = new ArrayList<>();
 
-    public Student(byte grade, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws EntitiesEmptyException {
-        setGroup(grade);
+    public Student(byte group, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws EntitiesEmptyException {
+        setGroup(group);
         setSurname(surname);
         setName(name);
         setGender(gender);

@@ -21,7 +21,7 @@ public class begin {
                     "        8) Вывести на экран данные из файла.\n" +
                     "        9) Вывести на экран количество одинаковых учеников из файла и любого задания.\n");
 
-            findStudents(genStudent(100),new Scanner(System.in).nextInt());
+            findStudents(new Scanner(System.in).nextInt(), genStudent(100));
 
         } catch (EntitiesEmptyException | IOException e) {
             System.out.println(e.getMessage());

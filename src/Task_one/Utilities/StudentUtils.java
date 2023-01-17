@@ -19,7 +19,7 @@ public class StudentUtils {
     //поиск студентов
     //ArrayList<Student> students - список студентов
     //int task - номер задачи
-    public static void findStudents(ArrayList<Student> students, int task) throws EntitiesEmptyException, IOException {
+    public static void findStudents(int task, ArrayList<Student> students) throws EntitiesEmptyException, IOException {
         switch (task) {
             case 1 -> printStudents(getMaxAvgMark(students));
             case 2 -> printStudents(searchFromSubjectAndMark(searchFromGender(students, "Ж"), Subject.MATHEMATICS, (byte) 5));
@@ -89,7 +89,6 @@ public class StudentUtils {
 
     //поиск студентов в определенной группе
     public static ArrayList<Student> searchFromGroup(ArrayList<Student> students, byte group) {
-        CheckFieldEntities.checkGroup(group);
         ArrayList<Student> studentArrayList = new ArrayList<>();
         for (Student student : students) {
             if (student.getGroup() == group) {
@@ -143,7 +142,7 @@ public class StudentUtils {
         return studentArrayList;
     }
 
-    //поиск студентов, у которых самый высокий балл
+    //поиск студентов, у которых самый высокий средний балл
     public static ArrayList<Student> getMaxAvgMark(ArrayList<Student> students) {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
         int maxAvgMark = 0;
@@ -200,6 +199,7 @@ public class StudentUtils {
 
     //вывод в консоль список студентов
     public static void printStudents(ArrayList<Student> students) throws EntitiesEmptyException {
+        // не нужно проверять, то что сам же передаешь
         if (students.isEmpty()) {
             throw new EntitiesEmptyException("Учеников по данным условиям нет.");
         } else {
@@ -220,7 +220,9 @@ public class StudentUtils {
                 gender = "Ж";
             }
             students.add(new Student(
-                    (byte) (genRandom(1, 11)),
+                    (byte) genRandom(1, 11),
+                    // в базе русских имен/ фамилий скопировать штук 20-30 в файлики
+                    // и рандомить в зависимости от пола
                     "RandomSubject",
                     "WithActivity",
                     gender,
