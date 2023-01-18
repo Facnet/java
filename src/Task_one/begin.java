@@ -1,10 +1,11 @@
 package Task_one;
 
-import Task_one.Exceptions.EntitiesEmptyException;
+import Task_one.Exceptions.StudentException;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
+import static Task_one.Utilities.IOUtils.scannerInputSymbol;
 import static Task_one.Utilities.StudentUtils.*;
 
 public class begin {
@@ -21,10 +22,10 @@ public class begin {
                     "        8) Вывести на экран данные из файла.\n" +
                     "        9) Вывести на экран количество одинаковых учеников из файла и любого задания.\n");
 
-            findStudents(new Scanner(System.in).nextInt(), genStudent(100));
+            findStudents(scannerInputSymbol(), genStudent(10));
 
-        } catch (EntitiesEmptyException | IOException e) {
-            System.out.println(e.getMessage());
+        } catch (StudentException | IOException | InputMismatchException e) {
+            System.out.println(e);
         }
     }
 }

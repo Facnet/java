@@ -1,6 +1,6 @@
 package Task_one.Entities;
 
-import Task_one.Exceptions.EntitiesEmptyException;
+import Task_one.Exceptions.StudentException;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static Task_one.Utilities.CheckFieldEntities.*;
+import static Task_one.Utilities.CheckStudentField.*;
 import static Task_one.Utilities.StudentUtils.getAvgMark;
 
 public class Student implements Serializable {
@@ -22,7 +22,7 @@ public class Student implements Serializable {
     private HashMap<Subject, Byte> marks = new HashMap<>();
     private ArrayList<String> activity = new ArrayList<>();
 
-    public Student(byte group, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws EntitiesEmptyException {
+    public Student(byte group, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws StudentException {
         setGroup(group);
         setSurname(surname);
         setName(name);
@@ -35,7 +35,7 @@ public class Student implements Serializable {
         return this.group;
     }
 
-    public void setGroup(byte group) {
+    public void setGroup(byte group) throws StudentException {
         checkGroup(group);
         this.group = group;
     }
@@ -44,7 +44,7 @@ public class Student implements Serializable {
         return this.surname;
     }
 
-    public void setSurname(String surname) throws EntitiesEmptyException {
+    public void setSurname(String surname) throws StudentException {
         checkField("Фамилия", surname);
         this.surname = surname;
     }
@@ -53,7 +53,7 @@ public class Student implements Serializable {
         return this.name;
     }
 
-    public void setName(String name) throws EntitiesEmptyException {
+    public void setName(String name) throws StudentException {
         checkField("Имя", name);
         this.name = name;
     }
@@ -70,7 +70,7 @@ public class Student implements Serializable {
         return this.marks;
     }
 
-    public void setMarks(byte[] marks) {
+    public void setMarks(byte[] marks) throws StudentException {
         checkMarks(marks);
         this.marks.put(Subject.MATHEMATICS, marks[0]);
         this.marks.put(Subject.RUSSIAN_LANGUAGE, marks[1]);

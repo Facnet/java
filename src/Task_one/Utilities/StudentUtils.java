@@ -1,6 +1,6 @@
 package Task_one.Utilities;
 
-import Task_one.Exceptions.EntitiesEmptyException;
+import Task_one.Exceptions.StudentException;
 import Task_one.Entities.Student;
 import Task_one.Entities.Subject;
 
@@ -8,10 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Scanner;
 
-import static Task_one.Utilities.IOUtils.readStudentsFromFile;
-import static Task_one.Utilities.IOUtils.saveStudentsToFile;
+import static Task_one.Utilities.IOUtils.*;
 import static Task_one.Utilities.MathRandom.genRandom;
 
 public class StudentUtils {
@@ -19,14 +17,14 @@ public class StudentUtils {
     //поиск студентов
     //ArrayList<Student> students - список студентов
     //int task - номер задачи
-    public static void findStudents(int task, ArrayList<Student> students) throws EntitiesEmptyException, IOException {
+    public static void findStudents(byte task, ArrayList<Student> students) throws StudentException, IOException {
         switch (task) {
             case 1 -> printStudents(getMaxAvgMark(students));
             case 2 -> printStudents(searchFromSubjectAndMark(searchFromGender(students, "Ж"), Subject.MATHEMATICS, (byte) 5));
             case 3 -> printStudents(searchFromMark(searchFromGender(students, "М"), (byte) -3));
             case 4 -> {
                 System.out.print("Введите номер группы: ");
-                printStudents(searchFromGroup(students, new Scanner(System.in).nextByte()));
+                printStudents(searchFromGroup(students, scannerInputSymbol()));
             }
             case 5 -> printStudents(searchFromExcellentBeforeGroup(students, (byte) 7));
             case 6 -> printStudents(searchFromExcellentWithActivity(students));
@@ -147,17 +145,23 @@ public class StudentUtils {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
         int maxAvgMark = 0;
         int avgMark;
-        // оптимизировать, чтобы был один цикл
+        boolean findMaxMark = false;
         for (Student student : students) {
             avgMark = getAvgMark(student.getMarks());
             if (avgMark > maxAvgMark) {
                 maxAvgMark = avgMark;
+                findMaxMark = true;
             }
-        }
-        for (Student student : students) {
-            avgMark = getAvgMark(student.getMarks());
             if (maxAvgMark == avgMark) {
-                studentsArrayList.add(student);
+                if (findMaxMark) {
+                    if (!studentsArrayList.isEmpty()) {
+                        studentsArrayList.clear();
+                    }
+                    studentsArrayList.add(student);
+                    findMaxMark = false;
+                } else {
+                    studentsArrayList.add(student);
+                }
             }
         }
         return studentsArrayList;
@@ -174,13 +178,13 @@ public class StudentUtils {
         return (int) Math.round(avgMark / count);
     }
 
-    //сравнение студентов из двух источников
-    public static void equalStudent(ArrayList<Student> studentFromFile, ArrayList<Student> studentFromTask) throws EntitiesEmptyException {
+    //сравнение списка студентов из файла и задания
+    public static void equalStudent(ArrayList<Student> studentFromFile, ArrayList<Student> studentFromTask) throws StudentException {
         if (studentFromFile.isEmpty()) {
-            throw new EntitiesEmptyException("Ученики из файла не были найдены или файл пуст.");
+            throw new StudentException("Ученики из файла не были найдены или файл пуст.");
         } else {
             if (studentFromTask.isEmpty()) {
-                throw new EntitiesEmptyException("Учеников по данным условиям для сравнения нет.");
+                throw new StudentException("Учеников по данным условиям для сравнения нет.");
             } else {
                 int count = 0;
                 for (Student studentFF :
@@ -198,10 +202,9 @@ public class StudentUtils {
     }
 
     //вывод в консоль список студентов
-    public static void printStudents(ArrayList<Student> students) throws EntitiesEmptyException {
-        // не нужно проверять, то что сам же передаешь
+    public static void printStudents(ArrayList<Student> students) throws StudentException {
         if (students.isEmpty()) {
-            throw new EntitiesEmptyException("Учеников по данным условиям нет.");
+            throw new StudentException("Учеников по данным условиям нет.");
         } else {
             for (Student student : students) {
                 System.out.println(student);
@@ -210,7 +213,7 @@ public class StudentUtils {
     }
 
     //генерация списка студентов
-    public static ArrayList<Student> genStudent(int count) throws EntitiesEmptyException {
+    public static ArrayList<Student> genStudent(int count) throws StudentException {
         ArrayList<Student> students = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             String gender;
