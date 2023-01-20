@@ -145,23 +145,18 @@ public class StudentUtils {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
         int maxAvgMark = 0;
         int avgMark;
-        boolean findMaxMark = false;
         for (Student student : students) {
             avgMark = getAvgMark(student.getMarks());
             if (avgMark > maxAvgMark) {
                 maxAvgMark = avgMark;
-                findMaxMark = true;
+                if (!studentsArrayList.isEmpty()) {
+                    studentsArrayList.clear();
+                }
+                studentsArrayList.add(student);
+                continue;
             }
             if (maxAvgMark == avgMark) {
-                if (findMaxMark) {
-                    if (!studentsArrayList.isEmpty()) {
-                        studentsArrayList.clear();
-                    }
-                    studentsArrayList.add(student);
-                    findMaxMark = false;
-                } else {
-                    studentsArrayList.add(student);
-                }
+                studentsArrayList.add(student);
             }
         }
         return studentsArrayList;

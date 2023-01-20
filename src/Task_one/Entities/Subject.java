@@ -19,6 +19,6 @@ public enum Subject {
 
     @Override
     public String toString() {
-        return translate;
+        return getTranslate();
     }
 }
