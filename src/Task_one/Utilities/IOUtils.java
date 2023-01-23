@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Task_one.Utilities.MathRandom.genRandom;
-
 
 public class IOUtils {
     public static ArrayList<Student> readStudentsFromFile(String filename) throws IOException {
