@@ -208,8 +208,12 @@ public class StudentUtils {
     }
 
     //генерация списка студентов
-    public static ArrayList<Student> genStudent(int count) throws StudentException {
+    public static ArrayList<Student> genStudent(int count) throws StudentException, IOException {
         ArrayList<Student> students = new ArrayList<>();
+        ArrayList<String> ManName = getNames("М");
+        ArrayList<String> WomanName = getNames("Ж");
+        ArrayList<String> ManSurname = getSurnames("М");
+        ArrayList<String> WomanSurname = getSurnames("Ж");
         for (int i = 0; i < count; i++) {
             String gender;
             if (genRandom(0, 10) > 5) {
@@ -219,10 +223,8 @@ public class StudentUtils {
             }
             students.add(new Student(
                     (byte) genRandom(1, 11),
-                    // в базе русских имен/ фамилий скопировать штук 20-30 в файлики
-                    // и рандомить в зависимости от пола
-                    "RandomSubject",
-                    "WithActivity",
+                    getRandomSurname(ManSurname, WomanSurname, gender),
+                    getRandomName(ManName, WomanName, gender),
                     gender,
                     genMarks(),
                     genActivity()
@@ -233,6 +235,42 @@ public class StudentUtils {
         //activity.add("Java");
         //students[count - 1] = new Student((byte) 8, "Perfect", "Idol", "Ж", new byte[]{5, 5, 5, 5, 5, 5}, activity);
         return students;
+    }
+
+    //генерация имени
+    public static ArrayList<String> getNames(String gender) throws IOException {
+        if (gender.equals("М")) {
+            return getNamesOrSurnames("ManName.txt");
+        } else {
+            return getNamesOrSurnames("WomanName.txt");
+        }
+    }
+
+    //возвращает случайное имя
+    public static String getRandomName(ArrayList<String> manNames, ArrayList<String> womanNames, String gender) {
+        if (gender.equals("М")) {
+            return manNames.get(genRandom(0, manNames.size()));
+        } else {
+            return womanNames.get(genRandom(0, womanNames.size()));
+        }
+    }
+
+    //генерация фамилии
+    public static ArrayList<String> getSurnames(String gender) throws IOException {
+        if (gender.equals("М")) {
+            return getNamesOrSurnames("ManSurname.txt");
+        } else {
+            return getNamesOrSurnames("WomanSurname.txt");
+        }
+    }
+
+    //возвращает случайную фамилию
+    public static String getRandomSurname(ArrayList<String> manSurname, ArrayList<String> womanSurname, String gender) {
+        if (gender.equals("М")) {
+            return manSurname.get(genRandom(0, manSurname.size()));
+        } else {
+            return womanSurname.get(genRandom(0, womanSurname.size()));
+        }
     }
 
     //генерация оценок
