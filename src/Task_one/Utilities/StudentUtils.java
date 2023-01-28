@@ -20,26 +20,26 @@ public class StudentUtils {
     public static void findStudents(byte task, ArrayList<Student> students) throws StudentException, IOException {
         switch (task) {
             case 1 -> printStudents(getMaxAvgMark(students));
-            case 2 -> printStudents(searchFromSubjectAndMark(searchFromGender(students, "Ж"), Subject.MATHEMATICS, (byte) 5));
-            case 3 -> printStudents(searchFromMark(searchFromGender(students, "М"), (byte) -3));
+            case 2 -> printStudents(searchFromSubjectAndMark(searchFromGender(students, 'Ж'), Subject.MATHEMATICS, (byte) 5));
+            case 3 -> printStudents(searchFromMark(searchFromGender(students, 'М'), (byte) -3));
             case 4 -> {
                 System.out.print("Введите номер группы: ");
                 printStudents(searchFromGroup(students, scannerInputSymbol()));
             }
             case 5 -> printStudents(searchFromExcellentBeforeGroup(students, (byte) 7));
             case 6 -> printStudents(searchFromExcellentWithActivity(students));
-            case 7 -> saveStudentsToFile(searchFromSubjectAndMark(searchFromGender(students, "Ж"), Subject.MATHEMATICS, (byte) 5), "student.bin");
+            case 7 -> saveStudentsToFile(searchFromSubjectAndMark(searchFromGender(students, 'Ж'), Subject.MATHEMATICS, (byte) 5), "student.bin");
             case 8 -> printStudents(readStudentsFromFile("student.bin"));
-            case 9 -> equalStudent(readStudentsFromFile("student.bin"), searchFromMark(searchFromGender(students, "М"), (byte) -3));
+            case 9 -> equalStudent(readStudentsFromFile("student.bin"), searchFromExcellentBeforeGroup(students, (byte) 7));
             default -> System.out.println("Введен неправильный номер задачи!");
         }
     }
 
     //поиск студентов в зависимости от пола
-    public static ArrayList<Student> searchFromGender(ArrayList<Student> students, String gender) {
+    public static ArrayList<Student> searchFromGender(ArrayList<Student> students, char gender) {
         ArrayList<Student> studentsArrayList = new ArrayList<>();
         for (Student student : students) {
-            if (student.getGender().equals(gender)) {
+            if (student.getGender() == gender) {
                 studentsArrayList.add(student);
             }
         }
@@ -107,6 +107,7 @@ public class StudentUtils {
                     if (map.get(key) == 5) {
                         excellencies = true;
                     } else {
+                        excellencies = false;
                         break;
                     }
                 }
@@ -129,6 +130,7 @@ public class StudentUtils {
                     if (map.get(key) == 5 || map.get(key) == 4) {
                         excellencies = true;
                     } else {
+                        excellencies = false;
                         break;
                     }
                 }
@@ -165,12 +167,10 @@ public class StudentUtils {
     //возвращает средний балл
     public static int getAvgMark(HashMap<Subject, Byte> marks) {
         double avgMark = 0;
-        int count = 0;
         for (byte b : marks.values()) {
             avgMark = avgMark + b;
-            count++;
         }
-        return (int) Math.round(avgMark / count);
+        return (int) Math.round(avgMark / marks.size());
     }
 
     //сравнение списка студентов из файла и задания
@@ -214,12 +214,12 @@ public class StudentUtils {
         ArrayList<String> WomanName = getNames("Ж");
         ArrayList<String> ManSurname = getSurnames("М");
         ArrayList<String> WomanSurname = getSurnames("Ж");
-        for (int i = 0; i < count; i++) {
-            String gender;
+        for (int i = 0; i < count - 1; i++) {
+            char gender;
             if (genRandom(0, 10) > 5) {
-                gender = "М";
+                gender = 'М';
             } else {
-                gender = "Ж";
+                gender = 'Ж';
             }
             students.add(new Student(
                     (byte) genRandom(1, 11),
@@ -230,12 +230,11 @@ public class StudentUtils {
                     genActivity()
             ));
         }
-        /*
-        идеальный студент
+
+        //идеальный студент
         ArrayList<String> activity = new ArrayList<>();
-        activity.add("Java");
-        students[count - 1] = new Student((byte) 8, "Perfect", "Idol", "Ж", new byte[]{5, 5, 5, 5, 5, 5}, activity);
-        */
+        activity.add("Изучение Java");
+        students.add(new Student((byte) 8, "Иванова", "Ксения", 'Ж', new byte[]{5, 5, 5, 5, 5, 5}, activity));
         return students;
     }
 
@@ -249,8 +248,8 @@ public class StudentUtils {
     }
 
     //возвращает случайное имя
-    public static String getRandomName(ArrayList<String> manNames, ArrayList<String> womanNames, String gender) {
-        if (gender.equals("М")) {
+    public static String getRandomName(ArrayList<String> manNames, ArrayList<String> womanNames, char gender) {
+        if (gender == 'М') {
             return manNames.get(genRandom(0, manNames.size()));
         } else {
             return womanNames.get(genRandom(0, womanNames.size()));
@@ -267,8 +266,8 @@ public class StudentUtils {
     }
 
     //возвращает случайную фамилию
-    public static String getRandomSurname(ArrayList<String> manSurname, ArrayList<String> womanSurname, String gender) {
-        if (gender.equals("М")) {
+    public static String getRandomSurname(ArrayList<String> manSurname, ArrayList<String> womanSurname, char gender) {
+        if (gender == 'М') {
             return manSurname.get(genRandom(0, manSurname.size()));
         } else {
             return womanSurname.get(genRandom(0, womanSurname.size()));
@@ -306,4 +305,26 @@ public class StudentUtils {
         return new ArrayList<>(Arrays.asList(activityArray).subList(0, count));
     }
 
+    //проверка поля на пустое значение
+    public static void checkField(String field, String value) throws StudentException {
+        if (value.equals("")) {
+            throw new StudentException(field + " не может быть пустым!");
+        }
+    }
+
+    //проверка поля Группа
+    public static void checkGroup(byte group) throws StudentException {
+        if (group < 1 || group > 11) {
+            throw new StudentException("Класс не может быть меньше одного или больше одиннадцати! Инфо: " + group);
+        }
+    }
+
+    //проверка поля Оценка
+    public static void checkMarks(byte[] value) throws StudentException {
+        for (byte mark : value) {
+            if (mark < 1 || mark > 5) {
+                throw new StudentException("Оценка не может быть меньше одного или больше пяти! Инфо: " + mark);
+            }
+        }
+    }
 }

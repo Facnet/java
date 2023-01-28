@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static Task_one.Utilities.CheckStudentField.*;
-import static Task_one.Utilities.StudentUtils.getAvgMark;
+import static Task_one.Utilities.StudentUtils.*;
 
 public class Student implements Serializable {
     @Serial
@@ -18,11 +17,11 @@ public class Student implements Serializable {
     private byte group;
     private String surname;
     private String name;
-    private String gender;
+    private char gender;
     private HashMap<Subject, Byte> marks = new HashMap<>();
     private ArrayList<String> activity = new ArrayList<>();
 
-    public Student(byte group, String surname, String name, String gender, byte[] marks, ArrayList<String> activity) throws StudentException {
+    public Student(byte group, String surname, String name, char gender, byte[] marks, ArrayList<String> activity) throws StudentException {
         setGroup(group);
         setSurname(surname);
         setName(name);
@@ -58,11 +57,11 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public String getGender() {
+    public char getGender() {
         return this.gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
@@ -106,7 +105,7 @@ public class Student implements Serializable {
         return group == student.group
                 && surname.equals(student.surname)
                 && name.equals(student.name)
-                && gender.equals(student.gender)
+                && gender == student.gender
                 && marks.equals(student.marks)
                 && Objects.equals(activity, student.activity);
     }

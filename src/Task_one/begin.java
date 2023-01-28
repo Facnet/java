@@ -22,7 +22,7 @@ public class begin {
                     "        8) Вывести на экран данные из файла.\n" +
                     "        9) Вывести на экран количество одинаковых учеников из файла и любого задания.\n");
 
-            findStudents(scannerInputSymbol(), genStudent(10));
+            findStudents(scannerInputSymbol(), genStudent(200));
 
         } catch (StudentException | IOException | InputMismatchException e) {
             System.out.println(e);
